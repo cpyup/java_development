@@ -43,8 +43,8 @@ public class MathApp {
 
     public static void DistanceBetween(){
         int x1 = 5;
-        int x2 = 10;
-        int y1 = 85;
+        int y1 = 10;
+        int x2 = 85;
         int y2 = 50;
 
         double distance = Math.sqrt(Math.pow(x2 - x1,2)+ Math.pow(y2-y1,2));
