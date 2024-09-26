@@ -1,7 +1,5 @@
 package com.pluralsight;
 
-import static java.lang.Math.sqrt;
-
 public class MathApp {
     public static void main(String[] args) {
         SalaryComp();
