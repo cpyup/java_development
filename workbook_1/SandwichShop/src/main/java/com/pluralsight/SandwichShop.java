@@ -25,6 +25,7 @@ public class SandwichShop {
 
         boolean B_loaded = Objects.equals(S_loaded, "yes");
 
+        input.close();
 
         Calculate(size,age,B_loaded);
     }
