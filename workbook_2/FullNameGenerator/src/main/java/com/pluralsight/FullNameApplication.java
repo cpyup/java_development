@@ -33,6 +33,7 @@ public class FullNameApplication {
         System.out.println("Enter suffix (optional)\n");
         suffix = input.nextLine().trim();
 
+        input.close();
         ProcessInput();
     }
 
@@ -48,16 +49,15 @@ public class FullNameApplication {
         }
 
         if(suffix.isBlank()){
-            suffix = "";
+            suffix = "\n";
         }else{
-            suffix = ", "+suffix;
+            suffix = ", "+suffix+"\n";
 
         }
 
-
         String fullName = first+middle+last+suffix;
 
-        System.out.println(fullName);
+        System.out.println("Your full name is:\n"+fullName);
 
     }
 }
