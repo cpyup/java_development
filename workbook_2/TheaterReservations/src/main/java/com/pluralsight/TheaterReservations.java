@@ -23,9 +23,9 @@ public class TheaterReservations {
         int ticketCount = Integer.parseInt(input.nextLine());
 
         if(ticketCount > 1){
-            System.out.println(ticketCount+" tickets reserved for "+ dateIn.format(format) + " under " + fullName[1] + ", " + fullName[0]);
+            System.out.println(ticketCount+" tickets reserved for "+ dateIn + " under " + fullName[1] + ", " + fullName[0]);
         }else{
-            System.out.println("1 ticket reserved for "+ dateIn.format(format) + " under " + fullName[1] + ", " + fullName[0]);
+            System.out.println("1 ticket reserved for "+ dateIn + " under " + fullName[1] + ", " + fullName[0]);
         }
     }
 }
