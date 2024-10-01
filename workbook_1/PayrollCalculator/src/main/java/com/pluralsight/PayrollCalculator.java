@@ -19,6 +19,8 @@ public class PayrollCalculator {
         System.out.println("\nEnter Pay Rate");
         double payRate = input.nextDouble();
 
+        input.close();
+
         DisplayOutput(name,hoursWorked,payRate);
 
     }
