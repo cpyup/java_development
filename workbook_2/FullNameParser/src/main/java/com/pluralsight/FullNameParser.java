@@ -13,10 +13,18 @@ public class FullNameParser {
         System.out.println("Enter your name:\n");
         String[] nameIn = input.nextLine().trim().split(" ");
 
-        if(nameIn.length == 3){
-            System.out.println("\nFirst name: "+nameIn[0]+"\nMiddle Name: "+nameIn[1]+"\nLast Name: "+nameIn[2]);
-        }else{
-            System.out.println("\nFirst name: "+nameIn[0]+"\nMiddle Name: (none)\nLast Name: "+nameIn[1]);
+        switch (nameIn.length){
+            case 1:
+                System.out.println("\nFirst name: "+nameIn[0]+"\nMiddle Name: (none)\nLast Name: (none)");
+                break;
+            case 2:
+                System.out.println("\nFirst name: "+nameIn[0]+"\nMiddle Name: (none)\nLast Name: "+nameIn[1]);
+                break;
+
+            case 3:
+                System.out.println("\nFirst name: "+nameIn[0]+"\nMiddle Name: "+nameIn[1]+"\nLast Name: "+nameIn[2]);
+                break;
         }
+        input.close();
     }
 }
