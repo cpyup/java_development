@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class AddressBuilder {
@@ -11,30 +10,61 @@ public class AddressBuilder {
         String[] requestBill = {"Please provide the following information:\nFull name:","Billing Street:","Billing City:","Billing State:","Billing Zip:"};
         String[] requestShip = {"Shipping Street:","Shipping City:","Shipping State:","Shipping Zip:"};
 
-        List<String> userInput = new ArrayList<String>();
         Scanner scannerIn = new Scanner(System.in);
 
         StringBuilder finalOut = new StringBuilder();
 
+        int r = 0;
+
         for (String request:requestBill){
             System.out.println(request);
-            userInput.add(scannerIn.nextLine());
+            finalOut.append(scannerIn.nextLine());
+
+            switch (r){
+                case 0:
+                    finalOut.append("\n\nBilling Address:\n");
+                    break;
+
+                case 1:
+                    finalOut.append("\n");
+                    break;
+
+                case 2:
+                    finalOut.append(", ");
+                    break;
+
+                case 3:
+                    finalOut.append(" ");
+                    break;
+
+                case 4:
+                    finalOut.append("\n\nShipping Address:\n");
+                    break;
+            }
+            r++;
         }
+
+        r = 0;
 
         for (String request:requestShip){
             System.out.println(request);
-            userInput.add(scannerIn.nextLine());
+            finalOut.append(scannerIn.nextLine());
+
+            switch (r){
+                case 0,3:
+                    finalOut.append("\n");
+                    break;
+
+                case 1:
+                    finalOut.append(", ");
+                    break;
+
+                case 2:
+                    finalOut.append(" ");
+                    break;
+            }
+            r++;
         }
-
-        userInput.add(1,"\nBilling Address:\n");
-        userInput.add(5,"\nShipping Address:\n");
-
-
-        for (String output:userInput){
-            finalOut.append(output);
-            finalOut.append(" ");
-        }
-
 
         System.out.println(finalOut);
         scannerIn.close();
