@@ -23,6 +23,10 @@ public class CellPhoneApplication {
         System.out.println(phone2.dial(phone1.getPhoneNumber())); // Phone 2 dials Phone 1
         System.out.println(phone1.dial(phone3.getPhoneNumber())); // Phone 1 dials Phone 3
         System.out.println(phone3.dial(phone1.getPhoneNumber())); // Phone 3 dials Phone 1
+
+        System.out.println("\nDialing overload:\n");
+        System.out.println(phone1.dial(phone2));
+        System.out.println(phone3.dial(phone1));
     }
 
     public static CellPhone InputPrompt() {
