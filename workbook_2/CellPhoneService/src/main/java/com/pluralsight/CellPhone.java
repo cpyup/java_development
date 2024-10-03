@@ -51,7 +51,13 @@ public class CellPhone {
     public String getOwner() { return owner; }
     public void setOwner(String owner) { this.owner = owner; }
 
+    // Method to dial a phone number directly
     public String dial(String number) {
         return owner + "'s phone is calling " + number;
+    }
+
+    // Overloaded method to dial another CellPhone's number
+    public String dial(CellPhone phone) {
+        return dial(phone.getPhoneNumber());
     }
 }
