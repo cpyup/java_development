@@ -38,4 +38,6 @@ public class CellPhone {
     // Getter and setter for owner
     public String getOwner() { return owner; }
     public void setOwner(String owner) { this.owner = owner; }
+
+    public String dial(String number){return owner + "'s phone is calling "+number;}
 }

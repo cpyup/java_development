@@ -4,8 +4,18 @@ import java.util.Scanner;
 
 public class CellPhoneApplication {
     public static void main(String[] args) {
-        CellPhone newPhone = InputPrompt();
-        DisplayOutput(newPhone);
+        System.out.println("Phone #1:\n");
+        CellPhone phone1 = InputPrompt();
+        System.out.println("\nPhone #2:\n");
+        CellPhone phone2 = InputPrompt(); // Creating a second instance of CellPhone
+
+        display(phone1); // Display the first cell phone
+        display(phone2); // Display the second cell phone
+
+        System.out.println("\nDialing between the two phones\n");
+
+        System.out.println(phone1.dial(phone2.getPhoneNumber()));
+        System.out.println(phone2.dial(phone1.getPhoneNumber()));
     }
 
     public static CellPhone InputPrompt() {
@@ -37,12 +47,12 @@ public class CellPhoneApplication {
         return phone;
     }
 
-    public static void DisplayOutput(CellPhone ourPhone) {
+    public static void display(CellPhone phone) {
         System.out.println("\nCell Phone Details:");
-        System.out.println("Serial Number: " + ourPhone.getSerialNumber());
-        System.out.println("Model: " + ourPhone.getModel());
-        System.out.println("Carrier: " + ourPhone.getCarrier());
-        System.out.println("Phone Number: " + ourPhone.getPhoneNumber());
-        System.out.println("Owner: " + ourPhone.getOwner());
+        System.out.println("Serial Number: " + phone.getSerialNumber());
+        System.out.println("Model: " + phone.getModel());
+        System.out.println("Carrier: " + phone.getCarrier());
+        System.out.println("Phone Number: " + phone.getPhoneNumber());
+        System.out.println("Owner: " + phone.getOwner());
     }
 }
