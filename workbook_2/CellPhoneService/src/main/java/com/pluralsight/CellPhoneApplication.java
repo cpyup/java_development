@@ -6,17 +6,23 @@ public class CellPhoneApplication {
     public static void main(String[] args) {
         System.out.println("Phone #1:\n");
         CellPhone phone1 = InputPrompt();
+
         System.out.println("\nPhone #2:\n");
         CellPhone phone2 = InputPrompt(); // Creating a second instance of CellPhone
 
-        display(phone1); // Display the first cell phone
-        display(phone2); // Display the second cell phone
+        // Display the first two cell phones
+        display(phone1);
+        display(phone2);
 
-        System.out.println("\nDialing between the two phones\n");
+        // Creating a third phone using the overloaded constructor
+        CellPhone phone3 = new CellPhone(7654321, "Samsung Galaxy", "AT&T", "555-5678", "Bob");
+        display(phone3); // Display the third cell phone
 
-        // Just to clarify, in the previous section I had already used the requested method for my output, hence printing from main rather than refactoring too much
-        System.out.println(phone1.dial(phone2.getPhoneNumber()));
-        System.out.println(phone2.dial(phone1.getPhoneNumber()));
+        System.out.println("\nDialing between the phones:\n");
+        System.out.println(phone1.dial(phone2.getPhoneNumber())); // Phone 1 dials Phone 2
+        System.out.println(phone2.dial(phone1.getPhoneNumber())); // Phone 2 dials Phone 1
+        System.out.println(phone1.dial(phone3.getPhoneNumber())); // Phone 1 dials Phone 3
+        System.out.println(phone3.dial(phone1.getPhoneNumber())); // Phone 3 dials Phone 1
     }
 
     public static CellPhone InputPrompt() {
