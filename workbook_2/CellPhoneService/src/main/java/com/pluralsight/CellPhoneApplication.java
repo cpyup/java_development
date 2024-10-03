@@ -14,6 +14,7 @@ public class CellPhoneApplication {
 
         System.out.println("\nDialing between the two phones\n");
 
+        // Just to clarify, in the previous section I had already used the requested method for my output, hence printing from main rather than refactoring too much
         System.out.println(phone1.dial(phone2.getPhoneNumber()));
         System.out.println(phone2.dial(phone1.getPhoneNumber()));
     }
