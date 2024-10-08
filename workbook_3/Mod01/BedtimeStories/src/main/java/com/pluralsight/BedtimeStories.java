@@ -23,6 +23,7 @@ public class BedtimeStories {
                 System.out.println(contents);
                 lineCount++;
             }
+            fileIn.close();
         }catch (IOException e){
             e.printStackTrace();
         }
