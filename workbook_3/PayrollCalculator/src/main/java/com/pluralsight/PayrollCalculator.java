@@ -49,7 +49,7 @@ public class PayrollCalculator {
         }
     }
 
-    public static void PrintCsv(){
+    /*public static void PrintCsv(){
         try{
             for (Employee thisEmployee : employees) {
                 System.out.printf("ID: %d, Name: %s, Hours Worked: %.2f, Gross Pay: %.2f\n",
@@ -61,7 +61,7 @@ public class PayrollCalculator {
         }catch (Exception e){
             System.out.println("Error Printing File");
         }
-    }
+    }*/
 
     public static void WriteCsv(String fileName){
         try{
