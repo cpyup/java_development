@@ -33,7 +33,7 @@ public class Employee {
         return hoursWorked;
     }
 
-    public void setHoursWorked(double hoursWorked) { // Changed from int to double
+    public void setHoursWorked(double hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
 
