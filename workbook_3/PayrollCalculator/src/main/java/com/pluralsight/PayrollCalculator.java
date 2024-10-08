@@ -25,11 +25,11 @@ public class PayrollCalculator {
         }
 
         for (Employee thisEmployee : employees) {
-            System.out.printf("ID: %d, Name: %s, Hours Worked: %.2f, Pay Rate: %.2f\n",
+            System.out.printf("ID: %d, Name: %s, Hours Worked: %.2f, Gross Pay: %.2f\n",
                     thisEmployee.getEmployeeId(),
                     thisEmployee.getName(),
                     thisEmployee.getHoursWorked(),
-                    thisEmployee.getPayRate());
+                    thisEmployee.getGrossPay());
         }
     }
 }
