@@ -8,7 +8,7 @@ public class BedtimeStories {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the name of the book to read\n");
-        String selection = input.nextLine().trim();
+        String selection = input.nextLine().trim().toLowerCase();
 
         try{
             FileInputStream fis = new FileInputStream(selection);
