@@ -3,12 +3,21 @@ package com.pluralsight;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PayrollCalculator {
+    public static ArrayList<Employee> employees = new ArrayList<>();
+    public static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-        ArrayList<Employee> employees = new ArrayList<>();
+        System.out.println("Enter the name of the file to load");
+        String fileToLoad = input.nextLine().trim();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("employees.csv"))) {
+        ReadCsv(fileToLoad);
+        PrintCsv();
+    }
+
+    public static void ReadCsv(String fileName){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String lineOut;
 
             while ((lineOut = bufferedReader.readLine()) != null) {
@@ -23,13 +32,19 @@ public class PayrollCalculator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        for (Employee thisEmployee : employees) {
-            System.out.printf("ID: %d, Name: %s, Hours Worked: %.2f, Gross Pay: %.2f\n",
-                    thisEmployee.getEmployeeId(),
-                    thisEmployee.getName(),
-                    thisEmployee.getHoursWorked(),
-                    thisEmployee.getGrossPay());
+    public static void PrintCsv(){
+        try{
+            for (Employee thisEmployee : employees) {
+                System.out.printf("ID: %d, Name: %s, Hours Worked: %.2f, Gross Pay: %.2f\n",
+                        thisEmployee.getEmployeeId(),
+                        thisEmployee.getName(),
+                        thisEmployee.getHoursWorked(),
+                        thisEmployee.getGrossPay());
+            }
+        }catch (Exception e){
+            System.out.println("Error Printing File");
         }
     }
 }
