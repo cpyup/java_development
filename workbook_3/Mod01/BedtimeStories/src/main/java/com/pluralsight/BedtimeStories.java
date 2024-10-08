@@ -24,7 +24,7 @@ public class BedtimeStories {
                 lineCount++;
             }
             fileIn.close();
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
