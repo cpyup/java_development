@@ -1,8 +1,8 @@
 package com.pluralsight;
 public class Product {
-    private int id;
-    private String name;
-    private float price;
+    private final int id;
+    private final String name;
+    private final float price;
 
     public Product(int id, String name, float price) {
         this.id = id;

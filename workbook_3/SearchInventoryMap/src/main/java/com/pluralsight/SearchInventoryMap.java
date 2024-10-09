@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class SearchInventoryMap {
-    static Map<String, Product> inventory = new HashMap<>();
+    static Map<Integer, Product> inventory = new HashMap<>();
     static final String path = "inventory.csv";
 
     public static void main(String[] args) {
@@ -18,15 +18,24 @@ public class SearchInventoryMap {
         boolean continueSearching = true;
 
         while (continueSearching) {
-            System.out.print("What item name are you interested in? ");
-            String name = scanner.nextLine();
-            Product matchedProduct = inventory.get(name);
+            System.out.print("What item ID are you interested in? ");
+            String input = scanner.nextLine().trim();
+            int id;
+
+            try {
+                id = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid ID.");
+                continue;
+            }
+
+            Product matchedProduct = inventory.get(id);
 
             if (matchedProduct == null) {
                 System.out.println("We don't carry that product.");
             } else {
-                System.out.printf("We carry %s and the price is $%.2f%n",
-                        matchedProduct.getName(), matchedProduct.getPrice());
+                System.out.printf("ID #%d =  %s, Price: $%.2f%n",
+                        matchedProduct.getId(),matchedProduct.getName(), matchedProduct.getPrice());
             }
 
             System.out.print("Do you want to search again? (yes/no): ");
@@ -35,8 +44,8 @@ public class SearchInventoryMap {
                 continueSearching = false;
             }
         }
+        System.out.println("Goodbye!");
 
-        System.out.println("Thank you for using the inventory search!");
     }
 
     static void loadInventory() {
@@ -49,7 +58,7 @@ public class SearchInventoryMap {
                     String name = parts[1].trim();
                     float price = Float.parseFloat(parts[2].trim());
                     Product product = new Product(id, name, price);
-                    inventory.put(name, product);
+                    inventory.put(id, product);
                 }
             }
         } catch (IOException e) {
