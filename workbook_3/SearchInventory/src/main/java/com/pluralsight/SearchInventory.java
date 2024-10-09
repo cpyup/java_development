@@ -34,7 +34,7 @@ public class SearchInventory {
     }
 
     public static void sortInventory() {
-        inventory.sort(Comparator.comparing(Product::getName)); // Sort by product NAME
+        inventory.sort(Comparator.comparing(Product::getName));
     }
 
     public static void printInventory() {
@@ -57,7 +57,7 @@ public class SearchInventory {
             System.out.print("Enter command: ");
 
             int command = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (command) {
                 case 1 -> printInventory();
@@ -111,7 +111,7 @@ public class SearchInventory {
         }
     }
 
-    private static void addNewProduct(Scanner scanner) {  // Only adds to array, not file, instructions did not specify
+    private static void addNewProduct(Scanner scanner) {
         System.out.print("\nEnter product ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
