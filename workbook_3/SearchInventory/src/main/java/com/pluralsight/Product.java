@@ -15,6 +15,10 @@ public class Product {
         return id;
     }
 
+    public double getPrice(){
+        return price;
+    }
+
     @Override
     public String toString() {
         return "id: " + id + ", name: '" + name + "', price: " + price;
