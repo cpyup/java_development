@@ -15,17 +15,28 @@ public class SearchInventoryMap {
         loadInventory();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("What item name are you interested in? ");
-        String name = scanner.nextLine();
-        Product matchedProduct = inventory.get(name);
+        boolean continueSearching = true;
 
-        if (matchedProduct == null) {
-            System.out.println("We don't carry that product");
-            return;
+        while (continueSearching) {
+            System.out.print("What item name are you interested in? ");
+            String name = scanner.nextLine();
+            Product matchedProduct = inventory.get(name);
+
+            if (matchedProduct == null) {
+                System.out.println("We don't carry that product.");
+            } else {
+                System.out.printf("We carry %s and the price is $%.2f%n",
+                        matchedProduct.getName(), matchedProduct.getPrice());
+            }
+
+            System.out.print("Do you want to search again? (yes/no): ");
+            String response = scanner.nextLine().trim().toLowerCase();
+            if (!response.equals("yes")) {
+                continueSearching = false;
+            }
         }
 
-        System.out.printf("We carry %s and the price is $%.2f%n",
-                matchedProduct.getName(), matchedProduct.getPrice());
+        System.out.println("Thank you for using the inventory search!");
     }
 
     static void loadInventory() {
