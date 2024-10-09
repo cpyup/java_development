@@ -34,7 +34,7 @@ public class SearchInventory {
     }
 
     public static void sortInventory() {
-        inventory.sort(Comparator.comparing(Product::getName)); // Sort by product ID
+        inventory.sort(Comparator.comparing(Product::getName)); // Sort by product NAME
     }
 
     public static void printInventory() {
