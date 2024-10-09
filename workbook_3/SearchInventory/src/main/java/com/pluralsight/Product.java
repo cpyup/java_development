@@ -19,6 +19,10 @@ public class Product {
         return price;
     }
 
+    public String getName(){
+        return name;
+    }
+
     @Override
     public String toString() {
         return "id: " + id + ", name: '" + name + "', price: " + price;
