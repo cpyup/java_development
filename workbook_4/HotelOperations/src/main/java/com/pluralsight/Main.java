@@ -8,8 +8,17 @@ public class Main {
     private static final ArrayList<Reservation> TESTING_RESERVATIONS = new ArrayList<>();
     public static void main(String[] args) {
         setupTestingValues();
+        displayTestingValues();
+        testEmployeePunch();
+        testRoomActions();
+    }
+
+    private static void displayTestingValues(){
+        System.out.println("\n====================================Testing Room Values");
         TESTING_ROOMS.forEach(Main::displayRoomValues);
+        System.out.println("\n====================================Testing Employee Values");
         TESTING_EMPLOYEES.forEach(Main::displayEmployeeValues);
+        System.out.println("\n====================================Testing Reservation Values");
         TESTING_RESERVATIONS.forEach(Main::displayReservationValues);
     }
 
@@ -48,7 +57,46 @@ public class Main {
         System.out.println("\nRoom Type: "+(reservation.getRoomType() ? "King" : "Double"));
         System.out.println("Number Of Nights: "+reservation.getNumberOfNights());
         System.out.println("Is Weekend: "+(reservation.isWeekend() ? "Yes" : "No"));
-        System.out.println("Room Price: "+reservation.getPrice());
+        System.out.println("Base Price: "+reservation.getPrice());
         System.out.println("Total Price: "+reservation.getReservationTotal());
+    }
+
+    private static void testEmployeePunch(){
+        System.out.println("\n====================================Employee Punch Test");
+        Employee testEmployee = TESTING_EMPLOYEES.get(0);
+        testEmployee.setHoursWorked(0);
+        System.out.println("\nEmployee: "+testEmployee.getName()+"\nHours Worked: "+testEmployee.getHoursWorked());
+        testEmployee.punchTimeCard(10.00);
+        System.out.println("Clocked In At: 10:00am");
+        testEmployee.punchTimeCard(20.00);
+        System.out.println("Clocked Out At: 8:00pm\nTotal Hours Worked: "+testEmployee.getHoursWorked());
+    }
+
+    private static void testRoomActions(){
+        Room testRoom = TESTING_ROOMS.get(0);
+        System.out.println("\n====================================Room Action Testing");
+        for(int i =0; i < 4; i++){
+            displayTestRoom(testRoom);
+            switch (i) {
+                case 0 -> {testRoom.checkIn();
+                    System.out.println("\n======================Check In");
+                }
+                case 1 -> {testRoom.checkOut();
+                    System.out.println("\n======================Check Out");
+                }
+                case 2 -> {testRoom.cleanRoom();
+                    System.out.println("\n======================Clean Room");
+                }
+                default -> {
+                    return;
+                }
+            }
+        }
+    }
+
+    private static void displayTestRoom(Room room){
+        System.out.println("\nTesting Room: "+(room.isAvailable() ? "Is " : "Not ")+"Available");
+        System.out.println("Occupied: "+(room.isOccupied() ? "Yes" : "No"));
+        System.out.println("Clean: "+(room.isDirty() ? "No" : "Yes"));
     }
 }
