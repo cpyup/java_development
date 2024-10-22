@@ -6,14 +6,15 @@ public class Employee {
     private final String department;
     private final double payRate;
     private double hoursWorked;
-    private double startTime = 0.0;
+    private double startTime;
 
-    public Employee(String employeeId, String name, String department, double payRate, int hoursWorked) {
+    public Employee(String employeeId, String name, String department, double payRate) {
         this.employeeId = employeeId;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
-        this.hoursWorked = hoursWorked;
+        this.hoursWorked = 0.0;
+        this.startTime = 0.0;
     }
 
     public String getEmployeeId() {
@@ -54,7 +55,8 @@ public class Employee {
 
     public void punchTimeCard(double time){
         if(startTime > 0.0){
-            setHoursWorked(time - startTime);
+            setHoursWorked(getHoursWorked() + (time - startTime));
+            startTime = 0.0;
         }else{
             startTime = time;
         }

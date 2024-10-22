@@ -26,9 +26,9 @@ public class Main {
         TESTING_ROOMS.add(new Room (2,124.0));
         TESTING_ROOMS.add(new Room (1, 124.0));
 
-        TESTING_EMPLOYEES.add(new Employee("ABC123","Joe","Kitchen",15.0,50));
-        TESTING_EMPLOYEES.add(new Employee("DEF456","George","Maintenance",15.0,42));
-        TESTING_EMPLOYEES.add(new Employee("GHI789", "Sue", "Clerk", 15.0,32));
+        TESTING_EMPLOYEES.add(new Employee("ABC123","Joe","Kitchen",15.0));
+        TESTING_EMPLOYEES.add(new Employee("DEF456","George","Maintenance",15.0));
+        TESTING_EMPLOYEES.add(new Employee("GHI789", "Sue", "Clerk", 15.0));
 
         TESTING_RESERVATIONS.add(new Reservation(false,2,true));
         TESTING_RESERVATIONS.add(new Reservation(true, 3,false));
@@ -64,7 +64,6 @@ public class Main {
     private static void testEmployeePunch(){
         System.out.println("\n====================================Employee Punch Test");
         Employee testEmployee = TESTING_EMPLOYEES.get(0);
-        testEmployee.setHoursWorked(0);
         System.out.println("\nEmployee: "+testEmployee.getName()+"\nHours Worked: "+testEmployee.getHoursWorked());
         testEmployee.punchTimeCard(10.00);
         System.out.println("Clocked In At: 10:00am");
