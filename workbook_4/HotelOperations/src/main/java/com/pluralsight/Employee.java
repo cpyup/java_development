@@ -67,7 +67,7 @@ public class Employee {
     public void punchTimeCard(){
         LocalTime currentTime = LocalTime.now();
         double hours = currentTime.getHour();
-        double minutes = currentTime.getMinute() * .01;
+        double minutes = (currentTime.getMinute() / 60.0);
         punchTimeCard(hours+minutes);
     }
 }

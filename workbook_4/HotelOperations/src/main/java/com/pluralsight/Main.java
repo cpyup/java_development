@@ -74,7 +74,9 @@ public class Main {
         System.out.println("Clocked In At: 10:00am");
         testEmployee.punchTimeCard(20.00);
         System.out.println("Clocked Out At: 8:00pm\nTotal Hours Worked: "+testEmployee.getHoursWorked());
+        testEmployee.punchTimeCard(10.00);
         testEmployee.punchTimeCard();
+        System.out.println("\nOverload Test\nTotal Hours Worked: "+testEmployee.getHoursWorked());
     }
 
     private static void testRoomActions(){
