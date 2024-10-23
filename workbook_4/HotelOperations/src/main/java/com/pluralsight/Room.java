@@ -25,7 +25,7 @@ public class Room {
         return occupied;
     }
 
-    public void setIsOccupied(boolean occupied){
+    private void setIsOccupied(boolean occupied){
         this.occupied = occupied;
     }
 
@@ -37,15 +37,18 @@ public class Room {
         return !isOccupied() && !isDirty();
     }
 
-    public void checkIn(){
+    public boolean checkIn(){
         if(isAvailable()){
             setIsDirty(true);
             setIsOccupied(true);
+            return true;
         }
+        return false;
     }
 
-    public void checkOut(){
-        setIsOccupied(false);
+    public boolean checkOut(){
+        if(!isAvailable())setIsOccupied(false);
+        return isOccupied();
     }
 
     public void cleanRoom(){

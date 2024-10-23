@@ -7,7 +7,7 @@ public class Employee {
     private final String name;
     private final String department;
     private final double payRate;
-    private double hoursWorked;
+    private int hoursWorked;
     private double startTime;
 
     public Employee(String employeeId, String name, String department, double payRate) {
@@ -15,7 +15,7 @@ public class Employee {
         this.name = name;
         this.department = department;
         this.payRate = payRate;
-        this.hoursWorked = 0.0;
+        this.hoursWorked = 0;
         this.startTime = 0.0;
     }
 
@@ -40,7 +40,7 @@ public class Employee {
     }
 
     public void setHoursWorked(double hours){
-        this.hoursWorked = hours;
+        this.hoursWorked = (int)hours;
     }
 
     public double getTotalPay(){
