@@ -55,6 +55,10 @@ public class Employee {
         return Math.max(getHoursWorked() - getRegularHours(), 0);
     }
 
+    public double getStartTime(){
+        return startTime;
+    }
+
     public void punchTimeCard(double time){
         if(startTime > 0.0){
             setHoursWorked(getHoursWorked() + (time - startTime));

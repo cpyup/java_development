@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoomTest {
 
     @Test
-    void checkIn_availableRoom_success() {
+    void checkIn_AvailableRoom_Success() {  // TODO: Check Raymond's, improve and expand mine
         // Arrange
         Room testRoom = new Room(1,100);
 
@@ -14,11 +14,12 @@ class RoomTest {
         testRoom.checkIn();
 
         // Assert
-        assertFalse(testRoom.isAvailable());
+        assertTrue(testRoom.isDirty());
+        assertTrue(testRoom.isOccupied());
     }
 
     @Test
-    void checkIn_dirtyRoom_fail() {
+    void checkIn_DirtyRoom_Fail() {
         // Arrange
         Room testRoom = new Room(1,100);
         testRoom.checkIn();
@@ -28,11 +29,13 @@ class RoomTest {
         testRoom.checkIn();
 
         // Assert
+        assertTrue(testRoom.isDirty());
+        assertFalse(testRoom.isOccupied());
         assertFalse(testRoom.isOccupied());
     }
 
     @Test
-    void checkIn_occupiedRoom_fail() {
+    void checkIn_OccupiedRoom_Fail() {
         // Arrange
         Room testRoom = new Room(1,100);
         testRoom.checkIn();
@@ -45,7 +48,7 @@ class RoomTest {
 
 
     @Test
-    void checkOut_occupiedRoom_success() {
+    void checkOut_OccupiedRoom_Success() {
         // Arrange
         Room testRoom = new Room(1,100);
         testRoom.checkIn();
@@ -58,17 +61,19 @@ class RoomTest {
     }
 
     @Test
-    void checkOut_availableRoom_fail() {
+    void checkOut_AvailableRoom_Fail() {
         // Arrange
         Room testRoom = new Room(1,100);
 
         // Act
         // Assert
+        assertFalse(testRoom.isDirty());
+        assertFalse(testRoom.isOccupied());
         assertFalse(testRoom.checkOut());
     }
 
     @Test
-    void cleanRoom_dirtyEmpty_success() {
+    void cleanRoom_DirtyEmpty_Success() {
         // Arrange
         Room testRoom = new Room(1,100);
         testRoom.checkIn();
@@ -78,6 +83,7 @@ class RoomTest {
         testRoom.cleanRoom();
 
         // Assert
-        assertTrue(testRoom.isAvailable());
+        assertFalse(testRoom.isOccupied());
+        assertFalse(testRoom.isDirty());
     }
 }
