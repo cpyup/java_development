@@ -9,7 +9,7 @@ public class NameFormatter {
         return format(null,firstName,null,lastName,null);
     }
 
-    public static String format(String fullName){ // Modify to accept ALL format types
+    public static String format(String fullName){
         String[] input = fullName.split(" ");
 
         for(int i = 0; i < input.length; i++){
