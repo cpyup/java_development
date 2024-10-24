@@ -1,8 +1,8 @@
 package com.pluralsight;
 
 public class Card {
-    private String suit;
-    private String value;
+    private final String suit;
+    private final String value;
     private boolean isFaceUp;
 
     public Card(String suit, String value) {
@@ -35,16 +35,11 @@ public class Card {
         // only return the value if the card is face up
         if (isFaceUp) {
             // determine point value and return it
-            switch (value) {
-                case "A":
-                    return 11;
-                case "K":
-                case "Q":
-                case "J":
-                    return 10;
-                default:
-                    return Integer.parseInt(value);
-            }
+            return switch (value) {
+                case "A" -> 11;
+                case "K", "Q", "J" -> 10;
+                default -> Integer.parseInt(value);
+            };
         } else {
             return 0;
         }

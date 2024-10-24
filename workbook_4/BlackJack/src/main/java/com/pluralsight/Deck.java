@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards = new ArrayList<>();
 
     public Deck() {
-        cards = new ArrayList<>();
         String[] suits = {"Hearts", "Spades", "Diamonds", "Clubs"};
         String[] values = {"2", "3", "4", "5", "6", "7", "8",
                 "9", "10", "J", "Q", "K", "A"};
@@ -28,7 +27,7 @@ public class Deck {
 
     public Card deal() {
         // deal the top card (if there are any cards left
-        if (cards.size() > 0) {
+        if (getSize() > 0) {
             return cards.remove(0);
         } else {
             return null;

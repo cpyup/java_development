@@ -1,7 +1,7 @@
 package com.pluralsight;
 
 public class Player {
-    private String name;
+    private final String name;
     public Hand hand;
 
     public Player(String name){
