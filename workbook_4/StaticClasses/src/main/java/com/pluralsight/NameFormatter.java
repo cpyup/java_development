@@ -2,6 +2,7 @@ package com.pluralsight;
 
 public class NameFormatter {
     private NameFormatter(){}  // Private constructor prevents initialization
+    
     public static String format (String prefix, String firstName, String middleName, String lastName, String suffix) {
         return lastName + ", " + (prefix != null ? prefix + " " : "") + firstName + (middleName != null ? " " + middleName : "") + (suffix != null ? ", " + suffix : "");
     }
