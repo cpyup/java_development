@@ -90,7 +90,6 @@ public class Table {  // Handle players, decks and hands
                         break;
                     }
 
-
                     System.out.println("\n'H' To Hit Or 'S' To Stay");
                 }
             }
