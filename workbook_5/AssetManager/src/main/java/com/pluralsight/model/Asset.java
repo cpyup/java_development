@@ -27,11 +27,15 @@ public class Asset {
         this.dateAcquired = dateAcquired;
     }
 
-    public double getValue() {
+    public double getOriginalCost() {
         return originalCost;
     }
 
     public void setOriginalCost(double originalCost) {
         this.originalCost = originalCost;
+    }
+
+    public double getValue() {
+        return originalCost;
     }
 }

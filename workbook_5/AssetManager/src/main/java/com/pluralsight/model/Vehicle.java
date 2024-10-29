@@ -2,7 +2,7 @@ package com.pluralsight.model;
 
 import java.time.LocalDate;
 
-public class Vehicle extends Asset{
+public class Vehicle extends Asset {
     private String makeModel;
     private int year;
     private int odometer;
@@ -40,28 +40,31 @@ public class Vehicle extends Asset{
 
     @Override
     public double getValue() {
-        if(year > 10){
-            return calculateValue(100);
-        }else if(year >= 7){
-            return calculateValue(.08);
-        }else if(year >= 4){
-            return calculateValue(.06);
-        }else{
-            return calculateValue(.03);
-        }
-    }
-
-    private double calculateValue(double reductionPercentage){
         int currentYear = LocalDate.now().getYear();
-        double total;
-        if(reductionPercentage == 100){
-            total = super.getValue() - 1000;
-        }else{
-            total = super.getValue() - ((super.getValue() * reductionPercentage) * currentYear);
+        int age = currentYear - year;
+
+        double value = 0.0;
+        if (age <= 3) {
+            for (int i = 0; i < age; i++) {
+                value = 0.97 * getOriginalCost();
+            }
+        } else if (age <= 6) {
+            for (int i = 0; i < age; i++) {
+                value = 0.94 * getOriginalCost();
+            }
+        } else if (age <= 10) {
+            for (int i = 0; i < age; i++) {
+                value = 0.92 * getOriginalCost();
+            }
+        } else {
+            value = getOriginalCost() - 1000.00;
         }
-        if(odometer > 100000){
-            total = total - (total * .25);
+
+        if (!(makeModel.contains("Honda") || makeModel.contains("Toyota"))
+                && odometer > 100000) {
+            value *= 0.75;
         }
-        return total;
+
+        return value;
     }
 }

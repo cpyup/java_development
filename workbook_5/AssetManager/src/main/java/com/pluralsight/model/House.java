@@ -1,6 +1,6 @@
 package com.pluralsight.model;
 
-public class House extends Asset{
+public class House extends Asset {
     private String address;
     private int condition;
     private int squareFoot;
@@ -48,27 +48,23 @@ public class House extends Asset{
 
     @Override
     public double getValue() {
-        switch (lotSize) {
-            case 1 -> {
-                return calculateValues(180);
-            }
-            case 2 -> {
-                return calculateValues(130);
-            }
-            case 3 -> {
-                return calculateValues(90);
-            }
-            case 4 -> {
-                return calculateValues(80);
-            }
-            default -> {
-                return 0;
-            }
+        double value = 0;
 
+        switch (condition) {
+            case 1:
+                value = 180.00 * squareFoot;
+                break;
+            case 2:
+                value = 130.00 * squareFoot;
+                break;
+            case 3:
+                value = 90.00 * squareFoot;
+                break;
+            case 4:
+                value = 80.00 * squareFoot;
+                break;
         }
-    }
-
-    private double calculateValues(double conditionValue){
-        return (conditionValue * squareFoot) + (.25 * lotSize);
+        value += 0.25 * lotSize;
+        return value;
     }
 }
