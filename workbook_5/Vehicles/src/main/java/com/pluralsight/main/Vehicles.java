@@ -2,39 +2,17 @@ package com.pluralsight.main;
 
 import com.pluralsight.model.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Vehicles {
-    private static List<Vehicle> myVehicles;
     public static void main(String[] args) {
-        setupTestingList();
         updateVehicleValues();
     }
 
-    private static void setupTestingList(){
-        myVehicles = new ArrayList<>();
-        myVehicles.add(new Moped());
-        myVehicles.add(new Car());
-        myVehicles.add(new SemiTruck());
-        myVehicles.add(new Hovercraft());
-    }
-
     private static void updateVehicleValues(){
-        myVehicles.forEach(vehicle -> vehicle.setColor("Blue"));
-        myVehicles.forEach(vehicle -> vehicle.setModel("Test"));
-        myVehicles.forEach(vehicle -> vehicle.setTopSpeed(100));
-        myVehicles.forEach(vehicle -> vehicle.setFuelCapacity(100));
+        Moped moped = new Moped("","",100,100,1,100,100);
+        Car car = new Car("","",100,100,4,100,4);
+        SemiTruck semiTruck = new SemiTruck("","",100,100,100,100,100);
+        Hovercraft hovercraft = new Hovercraft("","",100,100,100,100,100);
 
-        Moped moped = (Moped) myVehicles.get(0);
-        moped.setMaxWeight(100);
-        Car car = (Car) myVehicles.get(1);
-        car.setNumberOfDoors(4);
-        SemiTruck semiTruck = (SemiTruck) myVehicles.get(2);
-        semiTruck.setNumberOfTrailers(2);
-        Hovercraft hovercraft = (Hovercraft) myVehicles.get(3);
-        hovercraft.setAirCushionPressure(100);
-        
         displayVehicles(moped,car,semiTruck,hovercraft);
     }
 
