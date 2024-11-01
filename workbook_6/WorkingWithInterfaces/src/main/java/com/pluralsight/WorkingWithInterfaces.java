@@ -12,9 +12,11 @@ public class WorkingWithInterfaces {
         people.add(new Person("George","Michael", 88));
         people.add(new Person("Ezra","Aiden", 19));
         people.add(new Person("Oscar","Jones", 32));
+        people.add(new Person("George","Jones", 22));
 
         people.forEach(person -> System.out.println(person.getLastName()+", "+person.getFirstName()+", "+person.getAge()));
         System.out.println("\n");
+
         Collections.sort(people);
         people.forEach(person -> System.out.println(person.getLastName()+", "+person.getFirstName()+", "+person.getAge()));
     }
