@@ -10,12 +10,12 @@
  order by UnitPrice;
  
  -- Products less than 7.5
- select ProductName, UnitPrice
+ select *
  from products
- where UnitPrice < 7.5;
+ where UnitPrice <= 7.5;
  
  -- 100 Units on hand, descending by price 
- select ProductName, UnitsInStock, UnitPrice
+ select *
  from products
  where UnitsInStock >= 100
  order by UnitPrice desc;
@@ -26,13 +26,22 @@
  where UnitsInStock >= 100
  order by UnitPrice desc, ProductName;
  
+ -- products not in inventory with 1 or more on backorder
+ select *
+ from products
+ where UnitsInStock = 0 and UnitsOnOrder >= 1
+ order by ProductName;
+ 
  -- Category table is categories
  
  -- List all categories
  select *
  from categories;
  
- -- seafood id is 8
+ -- find seafood id
+ select CategoryID
+ from categories
+ where CategoryName like "seafood";
  
  -- Listing all seafood
  select *
