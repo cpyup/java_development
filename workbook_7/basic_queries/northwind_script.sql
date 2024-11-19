@@ -61,6 +61,11 @@
  -- all supplier info
  select *
  from suppliers;
+ 
+ -- finding tokyo traders id
+ select SupplierID, CompanyName
+ from suppliers
+ where CompanyName like "%tokyo traders%";
 
 -- Tokyo Traders supplies to Northwind (id 4)
 select *
