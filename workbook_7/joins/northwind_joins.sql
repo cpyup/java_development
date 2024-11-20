@@ -31,7 +31,7 @@ where UnitPrice = (select max(UnitPrice)
 					from products);
                     
 -- Order id, ship name, ship address, shipping company from every order to Germany
-select OrderID, ShipName, ShipAddress, suppliers.CompanyName
+select OrderID, ShipName, ShipAddress, shippers.CompanyName
 from orders
 left join suppliers
 		on orders.ShipVia = suppliers.SupplierID
