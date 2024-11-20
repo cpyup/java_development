@@ -1,5 +1,5 @@
 -- Products with highest price
-select ProductName, UnitPrice
+select ProductName
 from products
 where UnitPrice = (select max(UnitPrice)
 					from products);
@@ -9,14 +9,14 @@ select OrderID, ShipName, ShipAddress
 from orders
 where ShipVia = (select ShipperID
 				from shippers
-                where CompanyName like "%federal%");
+                where CompanyName = 'Federal Shipping');
                 
 -- order ids of orders shipped via sasquatch
 select OrderID
 from `order details`
 where ProductID = (select ProductID
 					from products
-                    where ProductName like "%sasquatch%");
+                    where ProductName = 'Sasquatch Ale');
                     
 -- employee that sold order 10266
 select FirstName, LastName
