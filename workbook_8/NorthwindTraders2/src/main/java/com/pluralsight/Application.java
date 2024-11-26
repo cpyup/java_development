@@ -4,29 +4,57 @@ import java.sql.*;
 
 public class Application {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/northwind";
-        String user = "root";
-        String password = "P@ssw0rd";
-
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            if (connection != null) {
-                System.out.println("Connected to the database!");
-                String query = "SELECT ProductID, ProductName, UnitPrice, UnitsInStock FROM products";
-
-                Statement statement = connection.createStatement();
-                ResultSet results = statement.executeQuery(query);
-
-                while(results.next()){
-                    System.out.println("ID: "+results.getString("ProductID"));
-                    System.out.println("Name: "+results.getString("ProductName"));
-                    System.out.println("Price: "+results.getString("UnitPrice"));
-                    System.out.println("Stock: "+results.getString("UnitsInStock"));
-                    System.out.println("--------------------------------\n");
-                }
-
+        try {
+            if (args.length != 2) {
+                System.out.println(
+                        "Application needs two arguments to run: " + "java com.hca.jdbc.UsingDriverManager <username> " +
+                                "<password>");
+                System.exit(1);
             }
-        } catch (SQLException e) {
-            System.err.println("Connection error: " + e.getMessage());
+
+            // get the username and password from the command line args
+            String username = args[0];
+            String password = args[1];
+
+            // load the MySQL Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // 1. open a connection to the database
+            // use the database URL to point to the correct database
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/northwind",
+                    username,
+                    password);
+
+            // define your query with placeholders for parameters
+            String query = "SELECT ProductID, ProductName, UnitPrice, UnitsInStock FROM products";
+
+            // 2. Create a PreparedStatement
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // 3. Execute the PreparedStatement and obtain the ResultSet
+            ResultSet results = statement.executeQuery();
+
+            // process the results
+            while (results.next()) {
+                int productId = results.getInt("ProductID");
+                String productName = results.getString("ProductName");
+                double unitPrice = results.getDouble("UnitPrice");
+                int unitsInStock = results.getInt("UnitsInStock");
+
+                System.out.println("Product ID: " + productId);
+                System.out.println("Product Name: " + productName);
+                System.out.println("Unit Price: " + unitPrice);
+                System.out.println("Units In Stock: " + unitsInStock);
+                System.out.println("-----------------------------------------");
+            }
+
+            // 4. Close the connection and release resources
+            results.close();
+            statement.close();
+            connection.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
