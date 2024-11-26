@@ -12,7 +12,7 @@ public class Application {
                             "<password>");
             System.exit(1);
         }
-        
+
         displayMenu(args);
 
     }
