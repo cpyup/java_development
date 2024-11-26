@@ -12,8 +12,7 @@ public class Application {
                             "<password>");
             System.exit(1);
         }
-
-        //displayAllProducts(args);
+        
         displayMenu(args);
 
     }
