@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SimpleProductDAO implements ProductDAO{
+public class SimpleIProductDAO implements IProductDAO {
     private final List<Product> products;
 
-    public SimpleProductDAO() {
+    public SimpleIProductDAO() {
         this.products = new ArrayList<>();
         products.add(new Product(123,"Test1", "TestCat",3.5));
         products.add(new Product(456,"Test2", "TestCat",6));

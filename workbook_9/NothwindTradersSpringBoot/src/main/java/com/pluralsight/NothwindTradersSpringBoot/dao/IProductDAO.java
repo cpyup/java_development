@@ -4,7 +4,7 @@ import com.pluralsight.NothwindTradersSpringBoot.model.Product;
 
 import java.util.List;
 
-public interface ProductDAO {
+public interface IProductDAO {
     void add(Product product);
     List<Product> getAll();
 }
