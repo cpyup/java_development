@@ -1,4 +1,4 @@
-package com.pluralsight.NothwindTradersSpringBoot.dao;
+package com.pluralsight.NothwindTradersSpringBoot.dao.interfaces;
 
 import com.pluralsight.NothwindTradersSpringBoot.model.Product;
 
