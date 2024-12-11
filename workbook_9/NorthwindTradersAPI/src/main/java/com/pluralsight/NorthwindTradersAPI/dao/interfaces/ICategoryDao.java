@@ -8,4 +8,5 @@ public interface ICategoryDao {
     List<Category> getAll();
 
     Category getById(int categoryId);
+    Category insert(Category category);
 }

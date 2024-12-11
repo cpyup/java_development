@@ -1,6 +1,7 @@
 package com.pluralsight.NorthwindTradersAPI.dao.impl;
 
 import com.pluralsight.NorthwindTradersAPI.dao.interfaces.IProductDao;
+import com.pluralsight.NorthwindTradersAPI.model.Category;
 import com.pluralsight.NorthwindTradersAPI.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -66,5 +67,35 @@ public class JdbcProductDao implements IProductDao {
         }
 
         return null;
+    }
+
+    @Override
+    public Product insert(Product product){
+        String insertDataQuery = "INSERT INTO products (ProductName,CategoryID,UnitPrice) VALUES (?,?,?)";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement insertStatement = connection.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS)) {
+            // Setting parameters for the insert query.
+            insertStatement.setString(1, product.getProductName());
+            insertStatement.setInt(2, product.getCategoryId());
+            insertStatement.setDouble(3, product.getUnitPrice());
+            int affectedRows = insertStatement.executeUpdate(); // Execute the insert query.
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating product failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = insertStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int generatedId = generatedKeys.getInt(1);
+                    product.setProductId(generatedId);
+                } else {
+                    throw new SQLException("Creating product failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception.
+        }
+
+        return product;
     }
 }

@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+
 public class ProductService {
     private final IProductDao productDao;
 
-    @Autowired
+
     public ProductService(IProductDao productDao) {
         this.productDao = productDao;
     }
