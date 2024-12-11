@@ -9,5 +9,6 @@ public interface IProductDao {
     List<Product> getAll();
 
     Product getById(int productId);
-    Product insert(Product product);
+    Product addProduct(Product product);
+    void update(int id, Product product);
 }

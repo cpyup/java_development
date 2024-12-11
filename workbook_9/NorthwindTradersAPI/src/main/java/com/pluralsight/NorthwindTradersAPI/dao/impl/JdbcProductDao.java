@@ -1,7 +1,6 @@
 package com.pluralsight.NorthwindTradersAPI.dao.impl;
 
 import com.pluralsight.NorthwindTradersAPI.dao.interfaces.IProductDao;
-import com.pluralsight.NorthwindTradersAPI.model.Category;
 import com.pluralsight.NorthwindTradersAPI.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -70,7 +69,7 @@ public class JdbcProductDao implements IProductDao {
     }
 
     @Override
-    public Product insert(Product product){
+    public Product addProduct(Product product){
         String insertDataQuery = "INSERT INTO products (ProductName,CategoryID,UnitPrice) VALUES (?,?,?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement insertStatement = connection.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS)) {
@@ -97,5 +96,22 @@ public class JdbcProductDao implements IProductDao {
         }
 
         return product;
+    }
+
+    @Override
+    public void update(int productId, Product product) {
+        // This method updates an existing transaction in the database.
+        String updateDataQuery = "UPDATE products SET ProductName = ?, CategoryID = ?, UnitPrice = ? WHERE ProductID = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement updateStatement = connection.prepareStatement(updateDataQuery)) {
+            // Setting parameters for the update query.
+            updateStatement.setString(1, product.getProductName());
+            updateStatement.setInt(2, product.getCategoryId());
+            updateStatement.setDouble(3, product.getUnitPrice());
+            updateStatement.setInt(4, productId);
+            updateStatement.executeUpdate(); // Execute the update query.
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception.
+        }
     }
 }

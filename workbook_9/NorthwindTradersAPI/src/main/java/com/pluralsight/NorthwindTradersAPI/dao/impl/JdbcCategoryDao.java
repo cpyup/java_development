@@ -65,7 +65,7 @@ public class JdbcCategoryDao implements ICategoryDao {
     }
 
     @Override
-    public Category insert(Category category){
+    public Category addCategory(Category category){
         String insertDataQuery = "INSERT INTO categories (CategoryName) VALUES (?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement insertStatement = connection.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS)) {
@@ -91,5 +91,20 @@ public class JdbcCategoryDao implements ICategoryDao {
         }
 
         return category;
+    }
+
+    @Override
+    public void update(int categoryId, Category category) {
+        // This method updates an existing transaction in the database.
+        String updateDataQuery = "UPDATE categories SET CategoryName = ? WHERE CategoryID = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement updateStatement = connection.prepareStatement(updateDataQuery)) {
+            // Setting parameters for the update query.
+            updateStatement.setString(1, category.getCategoryName());
+            updateStatement.setInt(2, categoryId);
+            updateStatement.executeUpdate(); // Execute the update query.
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception.
+        }
     }
 }
