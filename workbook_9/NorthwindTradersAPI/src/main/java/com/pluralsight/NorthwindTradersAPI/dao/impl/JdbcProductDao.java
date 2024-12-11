@@ -114,4 +114,16 @@ public class JdbcProductDao implements IProductDao {
             e.printStackTrace(); // Log or handle the SQL exception.
         }
     }
+
+    @Override
+    public void delete(int id) {
+        String deleteDataQuery = "DELETE FROM products WHERE ProductID = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement deleteStatement = connection.prepareStatement(deleteDataQuery)) {
+            deleteStatement.setInt(1, id); // Set the ID parameter in the delete query.
+            deleteStatement.executeUpdate(); // Execute the delete query.
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception.
+        }
+    }
 }

@@ -2,7 +2,6 @@ package com.pluralsight.NorthwindTradersAPI.dao.impl;
 
 import com.pluralsight.NorthwindTradersAPI.dao.interfaces.ICategoryDao;
 import com.pluralsight.NorthwindTradersAPI.model.Category;
-import com.pluralsight.NorthwindTradersAPI.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -103,6 +102,18 @@ public class JdbcCategoryDao implements ICategoryDao {
             updateStatement.setString(1, category.getCategoryName());
             updateStatement.setInt(2, categoryId);
             updateStatement.executeUpdate(); // Execute the update query.
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception.
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        String deleteDataQuery = "DELETE FROM categories WHERE CategoryID = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement deleteStatement = connection.prepareStatement(deleteDataQuery)) {
+            deleteStatement.setInt(1, id); // Set the ID parameter in the delete query.
+            deleteStatement.executeUpdate(); // Execute the delete query.
         } catch (SQLException e) {
             e.printStackTrace(); // Log or handle the SQL exception.
         }
